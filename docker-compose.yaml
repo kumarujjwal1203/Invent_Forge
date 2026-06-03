@@ -1,11 +1,12 @@
 version: '3.9'
 
 services:
-
-  backend:
+  inventedge-api:
     build: .
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    environment:
+      INVENTEDGE_DATABASE_URL: file:inventedge.db
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
